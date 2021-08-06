@@ -25,11 +25,11 @@ type CustomerService interface {
 	Create(ctx context.Context, customer *dto.CreateCustomerArguments) (err error)
 	// Delete customer by id
 	DeleteById(ctx context.Context, customerId int) (err error)
-	// update customer(arguments includes version, which can handle properly overriding values)
+	// update customer(arguments includes hash, which can handle properly overriding values)
 	Update(ctx context.Context, args *dto.UpdateCustomerArguments) (err error)
 	// query customers list(sorting by customer fields + search on firstName and lastName)
 	QueryList(ctx context.Context, args *dto.ListCustomersArguments) (result *dto.ListCustomersResult, err error)
-	// get detailed information by customer id(including version)
+	// get detailed information by customer id(including hash)
 	GetById(ctx context.Context, customerId int) (customer *models.Customer, err error)
 }
 
