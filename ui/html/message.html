@@ -1,0 +1,24 @@
+{{define "message"}}
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Message page</title>
+  {{template "defaultincludes"}}
+</head>
+<body>
+  {{template "nav"}}
+
+  {{if .IsSuccess}}
+  <div class="alert alert-success">
+    <strong>Success!</strong> {{.Message}}
+  </div>
+  {{else }}
+  <div class="alert alert-danger">
+    <strong>Error!</strong> {{.Message}}
+  </div>
+  {{end}}
+</body>
+
+</html>
+{{end}}

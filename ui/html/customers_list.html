@@ -1,0 +1,108 @@
+{{define "customers_list"}}
+<!DOCTYPE html>
+<html>
+
+<head>
+    {{template "defaultincludes"}}
+
+</head>
+
+<body style="padding-left: 30px; width: 80%;">
+    {{template "nav"}}
+    <form method="POST">
+        <div class="row">
+            <div class="col-3">
+                <div class="form-group">
+                    <input required class="form-control input-sm" id="search" placeholder="Enter search pattern"
+                        type="text" name="searchValue" />
+                    <input type="hidden" name="page" value="0" />
+                    <input type="hidden" name="orderBy" value="customer_first_name" />
+                </div>
+            </div>
+            <div class="col-1">
+                <div class="form-group">
+                    <button type="submit" class="btn btn-info">Search</button>
+                </div>
+            </div>
+           
+        </div>
+    </form>
+    <br/>
+    <div class="row form-group">
+        <form method="POST">
+            <input type="hidden" name="page" value="0" />
+            <input type="hidden" name="orderBy" value="customer_first_name" />
+            <button type = "submit" class="btn btn-info">Reset</button>
+        </form>
+    </div>
+    <table class="table">
+        <tr>
+
+            <th scope="col">E-mail address </th>
+            <th scope="col">Firstname</th>
+            <th scope="col">Lastname</th>
+            <th scope="col">Birth date</th>
+            <th scope="col">Gender</th>
+            <th scope="col">Address</th>
+            <th scope="col">Actions</th>
+        </tr>
+        {{with .Customers}}
+        {{range .}}
+        <tr>
+            <td>{{.Email}}</td>
+            <td>{{.FirstName}}</td>
+            <td>{{.LastName}}</td>
+            <td>{{.BirthDate}}</td>
+            <td>{{.Gender}}</td>
+            <td>{{.Address}}</td>
+            <td>
+                <form method="POST" action="/customers/{{.Id}}/delete">
+                    <button class="btn btn-danger" type="submit">
+                        Delete customer
+                    </button>
+                </form>
+                <br />
+                <a href="/customers/{{.Id}}/edit">
+                    <button class="btn btn-primary">
+                        Edit customer
+                    </button>
+                </a>
+            </td>
+        </tr>
+        {{end}}
+        {{end}}
+
+    </table>
+    <ul class="pagination">
+        <li class="page-item">
+            <div class="row">
+                <div class="col">
+                    {{if .Prev}}
+                    <form method="POST">
+                        <input type="hidden" name="page" value="{{.PrevValue}}" />
+                        <input type="hidden" name="searchValue" value="{{.SearchValue}}" />
+                        <input type="hidden" name="orderBy" value="customer_first_name" />
+                        <button class="btn btn-primary" type="submit">Previous</button>
+                    </form>
+                    {{end}}
+                </div>
+                <div class="col">
+                    {{if .Next}}
+                    <form method="POST">
+                        <button class="btn btn-primary" type="submit">Next</button>
+                        <input type="hidden" name="searchValue" value="{{.SearchValue}}" />
+                        <input type="hidden" name="page" value="{{.NextValue}}" />
+                        <input type="hidden" name="orderBy" value="customer_first_name" />
+                    </form>
+                    {{end}}
+                </div>
+
+
+            </div>
+        </li>
+    </ul>
+
+</body>
+
+</html>
+{{end}}

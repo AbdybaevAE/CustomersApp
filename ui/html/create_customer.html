@@ -1,0 +1,57 @@
+{{define "create_customer"}}
+<!DOCTYPE html>
+<html>
+
+<head>
+    {{template "defaultincludes"}}
+</head>
+
+<body>
+    {{template "nav"}}
+
+    <div style="margin-right: 500px;">
+        <form method="POST">
+            <div class="form-control">
+                <label for="email">Email address:</label>
+                <input required class="form-control" id="email" placeholder="Enter email" type="email" name="email"
+                    />
+            </div>
+            <div class="form-control">
+                <label for="firstName">FirstName:</label>
+                <input maxlength="200" required placeholder="Enter firstname" type="text" class="form-control"
+                    id="firstName" name="firstName">
+            </div>
+            <div class="form-control">
+                <label for="lastName">LastName:</label>
+                <input maxlength="200" required class="form-control" id="lastName" placeholder="Enter lastname"
+                    type="text" name="lastName">
+            </div>
+            <div class="form-control">
+                <label for="birthDate">BirthDate:</label>
+                <input required min="{{.MinDate}}" max="{{.MaxDate}}" class="form-control" id="birthDate"
+                    placeholder="choose birth date" type="date" name="birthDate">
+            </div>
+            <div class="form-control">
+                <label>*Gender:</label>
+                <select class="form-select" name="gender">
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                </select>
+            </div>
+
+            <div class="form-control">
+                <label for="address">Address:</label><br />
+                <input maxlength="200" class="form-control" id="address" type="text" name="email" />
+            </div>
+            <div class="form-control">
+                <button class="btn btn-primary" type="submit">Save</button>
+            </div>
+        </form>
+    </div>
+
+</body>
+
+</html>
+
+
+{{end}}
