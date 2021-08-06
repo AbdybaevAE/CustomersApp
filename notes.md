@@ -1,4 +1,16 @@
-Unfortunately there are only 3 unit tests per project, I was spended a lot of time on frontend part and html/template part.
+Some notes to current situation:
+- Add more unit tests(unfortunately there are only 3 unit tests per project)
+- Serve static data with nginx for example(currenly i'm using fileserver)
+- Add CSRF
+- Make better search algorithm(elastic search or something another)
+- Move to spa
+- Using caching tecniques(+optimis lock)
+- Accept optional fields editing(if fields wasn't changed due to overwriten changes)
+- Multisage build in dockerfile
+- We don't use any relations in db. Maybe NoSQL DB would be better choise for persistent?
+- Integrate cache techniques
+
+I was spended a lot of time on frontend part and html/template part.
 As we use templates we need to add csrf.
 Something like this:
 ```go
@@ -182,5 +194,4 @@ type CustomerService interface {
 	GetById(ctx context.Context, customerId int) (customer *models.Customer, err error)
 }
 ```
-
 
